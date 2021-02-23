@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import './styles/global.css'
+import ExperienceBar from "./components/ExperienceBar"
+import { useState } from "react"
+
 
 function App() {
+
+  const randomNumber = (counter:any) => {
+    return counter +Math.floor(Math.random() * (25 - 4 + 1) * 4)
+  }
+
+  const [ expCounter, setExpCounter ] = useState(0)
+
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <ExperienceBar
+        exp={expCounter}
+      />
+      <div className='message'>
+        <h1> LEVEL YOURSELF UP!</h1>
+        <p>You've gained {expCounter} xp! </p>
+      </div>
+      <button className='exp-button' onClick={() => setExpCounter(randomNumber(expCounter))} style={{height: '5rem'}} > Click for XP </button>
     </div>
   );
 }
