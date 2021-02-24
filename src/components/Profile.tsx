@@ -1,10 +1,15 @@
-export function Profile() {
+
+
+export function Profile(pokemonData:any) {
+ 
+    let pokemon = pokemonData.pokemonData
+
     return (
-        <div>
-            <img src="https://github.com/Carlos-kaspa.png" alt="kaspa profile picture"/>
+        <div className='profile-container'>
+            <img src={pokemon.sprites.front_shiny} alt="pokemon picture"/>
             <div>
-                <strong> Carlos Kaspa</strong>
-                <p> Level 1</p>
+                <strong>{pokemon.name.toUpperCase()}</strong>
+                <p>{pokemon.base_experience} xp </p>
             </div>
         </div>
     )
