@@ -19,15 +19,35 @@
     text-decoration: none;
 }
 
-@media(max-width: 1080px){
+@media(min-width: 1080px){
     html{
         font-size: 93.75%;
     }
+
+    .profile-container strong {
+        font-size:10rem;
+    }
+
+
 }
 
 @media(max-width: 720px){
     html{
         font-size: 87.5%;
+    }
+
+    .container{
+        height: 100%;
+        margin: auto;
+    }
+
+    .profile-container{
+        overflow: hidden;
+    }
+
+    .profile-container strong{
+        padding-top: 2rem;
+        font-size: 4rem;
     }
 }
 body {
@@ -141,6 +161,8 @@ a {
 .message h1{
     font-family: 'Inter',sans-serif;
     text-shadow: 0px 2px var(--title);
+    text-align: center;
+    padding-bottom: 2rem;
 
 
 }
@@ -187,7 +209,6 @@ a {
 }
 
 .profile-container strong {
-    font-size: 10rem;
     font-weight:  600;
     color:var(--white);
     text-align: center;
@@ -196,9 +217,6 @@ a {
     position: absolute;
     z-index: -1;
     margin: auto;
-
-
-    
 }
 
 .profile-container div p {
