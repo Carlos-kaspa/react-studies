@@ -186,13 +186,16 @@ a {
     flex-direction: column;
 }
 
-.profile-container div strong {
-    font-size: 1.5rem;
+.profile-container strong {
+    font-size: 10rem;
     font-weight:  600;
-    color: var(--white);
+    color:var(--white);
     text-align: center;
-    font-family: 'Inter',sans-serif;
-    text-shadow: 0px 2px var(--title);
+    font-family: 'Radjhani',sans-serif;
+    text-shadow: 0px 5px var(--title);
+    position: absolute;
+    z-index: -1;
+    margin: auto;
 
 
     
