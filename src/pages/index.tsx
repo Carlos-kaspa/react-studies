@@ -23,7 +23,6 @@ export default function Home() {
   const [ pokeEvolution, setPokeEvolution ] = React.useState<string>()
 
 useEffect(() => {
-  Notification.requestPermission()
   axios.get(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}`)
     .then(response => setPokemon(response.data));
    
@@ -48,15 +47,7 @@ useEffect(()=>{
   if(newPokemon){
 
     axios.get(`https://pokeapi.co/api/v2/pokemon/${newPokemon}`)
-      .then(response => setPokemon(response.data));
-
-      if(Notification.permission === 'granted'){
-        new Notification('Novo nível!', {
-          body: 'Parabéns, você subiu de nível!'
-        })
-      }
-      
-      
+      .then(response => setPokemon(response.data));      
   }
 
 },[newPokemon])
