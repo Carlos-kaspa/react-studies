@@ -6,10 +6,10 @@ export function Profile(pokemonData:any) {
 
     return (
         <div className='profile-container'>
-            <img src={pokemon.sprites.front_shiny} alt="pokemon picture"/>
-            <div>
+            <img src={pokemon.sprites.front_default} alt="pokemon picture"/>
+            <div className='pokeInfo'>
                 <strong>{pokemon.name.toUpperCase()}</strong>
-                <p>{pokemon.base_experience} xp </p>
+                <p> Get {pokemon.base_experience}xp to reach next level! </p>
             </div>
         </div>
     )

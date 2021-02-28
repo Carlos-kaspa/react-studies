@@ -32,8 +32,29 @@
 }
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--background);
-    color: var(--text);
+    color: var(--white);
+    background: linear-gradient(225deg, #b5b7c3, #7cb6d2);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 5s ease infinite;
+    -moz-animation: AnimationName 5s ease infinite;
+    animation: AnimationName 5s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:77% 0%}
+    50%{background-position:24% 100%}
+    100%{background-position:77% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:77% 0%}
+    50%{background-position:24% 100%}
+    100%{background-position:77% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:77% 0%}
+    50%{background-position:24% 100%}
+    100%{background-position:77% 0%}
 }
 
 body, input, textarea, button {
@@ -64,6 +85,8 @@ a {
     background: var(--gray-line);
     margin: 0 1.5rem;
     position: relative;
+    box-shadow: 0px 1px var(--title);
+    
 }
 
 .experience-bar > div > div{
@@ -75,15 +98,25 @@ a {
 }
 
 .exp-button{
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: var(--background);
-    background-color: var(--green);
+    background-color: var(--blue-twitter);
+    box-shadow: 0px 2px var(--title);
     border: none;
     border-radius: 30px;
-    font-size: 2rem;
+    font-size: 1.5rem;
     width: 21rem;
     margin: 0 auto;
     outline: 0;
+    transition: background-color 0.3s ease-in-out;
+    transition: color 0.2s ease-in-out;
+
+}
+
+.exp-button:hover{
+    background-color: yellowgreen;
+    color: var(--title);
+
 }
 
 .container {
@@ -101,6 +134,15 @@ a {
     align-items: center;
     flex-direction: column;
     margin: 1rem;
+    font-family: 'Rajdhani',sans-serif;
+
+}
+
+.message h1{
+    font-family: 'Inter',sans-serif;
+    text-shadow: 0px 2px var(--title);
+
+
 }
 
 .message-container {
@@ -112,7 +154,7 @@ a {
     font-style: italic;
 }
 .level-message {
-   color: var(--blue-twitter);
+   color: var(--white);
 }
 
 .container section {
@@ -125,28 +167,42 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Rajdhani',sans-serif;
 
     padding-bottom: 2rem;
 }
 
 .profile-container > img{
-    height: 10  .5rem;
-    width: 10.5rem;
+    height: 12.5rem;
+    width: 12.5rem;
     border-radius: 50% ; 
     object-fit: cover;
+    text-shadow: 0px 2px var(--title);
+
+}
+
+.pokeInfo {
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-container div strong {
     font-size: 1.5rem;
     font-weight:  600;
-    color: var(--title);
+    color: var(--white);
     text-align: center;
+    font-family: 'Inter',sans-serif;
+    text-shadow: 0px 2px var(--title);
+
+
+    
 }
 
 .profile-container div p {
     font-size: 1rem;
     margin-top: 0.5rem;
     text-align: center;
+    font-family: 'Rajdhani',sans-serif;
 }
 
 .button-section {

@@ -1,26 +1,71 @@
 
 import { ExperienceBar } from "../components/ExperienceBar"
-import { useState, useEffect } from "react"
+import React,{ useState, useEffect } from "react"
 import { Profile } from "../components/Profile"
 import axios from 'axios'
 
 export default function Home() {
-
-  const [ refresh, setRefresh ] = useState(0)
+  let randomPokemon = 1
+  const [ refresh, setRefresh ] = useState(false)
   const [ expCounter, setExpCounter ] = useState(0)
+  const [ overallXp, setOverallXp ] = useState(0)
+  const [ isEvolved , setIsEvolved ] = useState(false)
+  const [ evolutionCounter , setEvolutionCounter ] = useState(0)
+  const [ newPokemon , setNewPokemon ] = React.useState<string>()
 
-  const [ pokemon, setPokemon ] = useState({
-          name:'' ,
-          sprites: {front_shiny:''},
-          id: '',
-          base_experience: ''
+  const [ pokemon, setPokemon ] = React.useState({
+          name:'null' ,
+          sprites: {front_shiny: 'null'},
+          id: 'null',
+          base_experience: null
       })
+      
+  const [ pokeEvolution, setPokeEvolution ] = React.useState<string>()
 
-  useEffect(() => {
-    let randomPokemon = Math.floor(Math.random() * (100 - 1)+1)
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}`)
-        .then(response => setPokemon(response.data));
-  }, [refresh]);
+useEffect(() => {
+  Notification.requestPermission()
+  axios.get(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}`)
+    .then(response => setPokemon(response.data));
+   
+}, [])
+
+React.useEffect(() => {
+  if(isEvolved){
+
+   /*  axios.get(`https://pokeapi.co/api/v2/evolution-chain/${pokemon.id + 1}`)
+    .then(response => {
+      console.log('-------------- ', response.data) */
+      setNewPokemon(pokemon.id + 1)
+   /*  }); */
+    setIsEvolved(false)
+    
+  }
+}, [isEvolved]);
+
+
+useEffect(()=>{
+
+  if(newPokemon){
+
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${newPokemon}`)
+      .then(response => setPokemon(response.data));
+
+      if(Notification.permission === 'granted'){
+        new Notification('Novo nível!', {
+          body: 'Parabéns, você subiu de nível!'
+        })
+      }
+      
+      
+  }
+
+},[newPokemon])
+
+useEffect(()=>{
+   let newXpValue = overallXp
+  newXpValue += expCounter 
+  setOverallXp(newXpValue)
+},[expCounter])
 
 const randomNumber = (counter:any) => {
   return counter +Math.floor(Math.random() * (15 - 4 + 1) * 4)
@@ -29,7 +74,8 @@ const randomNumber = (counter:any) => {
 const handleLevel = (currentXP,totalExp, refresh) =>{
   if(currentXP >= totalExp && currentXP != 0){
     setExpCounter(0)
-    setRefresh(refresh => refresh+1)
+    setEvolutionCounter(evolutionCounter+1)
+    setIsEvolved(true)
     return; 
   }
 }
@@ -45,8 +91,8 @@ const handleLevel = (currentXP,totalExp, refresh) =>{
       
 
       <div className='message'>
-        <h1> LEVEL YOURSELF UP!</h1>
-        <p>You've gained {expCounter} xp! </p>
+        <h1> GAIN XP, GET NEW POKEMON!</h1>
+        <p>You've gained {overallXp} total exp </p>
       </div>
       <section>
 
@@ -62,7 +108,7 @@ const handleLevel = (currentXP,totalExp, refresh) =>{
           
             onClick={() => setExpCounter(randomNumber(expCounter))} 
             style={{height: '5rem'}} > 
-              Click for XP 
+              Click for Exp
           </button>
 
         </div>
