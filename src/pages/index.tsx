@@ -77,17 +77,22 @@ console.log('session state', session)
   return (
     <main>
       {!session && (
-        <>
-          <h1>NOT SIGNED IN</h1>
-          <button onClick={ signIn }> signIn </button>
-        </>
+        <section className='noSessionHome'>
+          <div className='notSigned'>
+            <h1>Login with Github</h1>
+            <button className='signInButton' onClick={ signIn }> Log In </button>
+          </div>
+        </section>
       )}
       {session && (
         <>
-            <h1>Signed in as {session.user.name}</h1>
-            <img className='userAvatar' src={session.user.image} alt="user image"/>
-            <p>Congrats, you are now saving your progress</p>
-            <button onClick={ signOut }> signOut </button>
+          <section className='loggedInBar'>
+            <div className='userInfo'>
+              <h1>{session.user.name}</h1>
+              <img className='userAvatar' src={session.user.image} alt="user image"/>
+            </div>
+            <button className='signOutButton'onClick={ signOut }> Log Out </button>
+          </section>
 
           <div className='container'>
             <ExperienceBar
