@@ -80,7 +80,8 @@ console.log('session state', session)
         <section className='noSessionHome'>
           <div className='notSigned'>
             <h1>Login with Github</h1>
-            <button className='signInButton' onClick={ signIn }> Log In </button>
+            
+            <button className='signInButton' onClick={ signIn }> <img src="/github-64px.png" alt="icon"/> Log In </button>
           </div>
         </section>
       )}
